@@ -1,16 +1,16 @@
 [
 {
   "directory": "/home/youngday/prj-yolo/xmake-onnxruntime-yolov5",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-D__tb_debug__", "-I", "/home/youngday/.xmake/packages/t/tbox/master/c7795a8b27604b7893a8015becf061dc/include", "-I", "/usr/local/include/opencv4", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/detector.cpp.o", "src/yolo/detector.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-I3rdparty/onnxruntime-linux-x64-gpu-1.12.1/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/detector.cpp.o", "src/yolo/detector.cpp"],
   "file": "src/yolo/detector.cpp"
 },
 {
   "directory": "/home/youngday/prj-yolo/xmake-onnxruntime-yolov5",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-D__tb_debug__", "-I", "/home/youngday/.xmake/packages/t/tbox/master/c7795a8b27604b7893a8015becf061dc/include", "-I", "/usr/local/include/opencv4", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/utils.cpp.o", "src/yolo/utils.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-I3rdparty/onnxruntime-linux-x64-gpu-1.12.1/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/utils.cpp.o", "src/yolo/utils.cpp"],
   "file": "src/yolo/utils.cpp"
 },
 {
   "directory": "/home/youngday/prj-yolo/xmake-onnxruntime-yolov5",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-D__tb_debug__", "-I", "/home/youngday/.xmake/packages/t/tbox/master/c7795a8b27604b7893a8015becf061dc/include", "-I", "/usr/local/include/opencv4", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/main.cpp.o", "src/yolo/main.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-I3rdparty/onnxruntime-linux-x64-gpu-1.12.1/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/main.cpp.o", "src/yolo/main.cpp"],
   "file": "src/yolo/main.cpp"
 }]

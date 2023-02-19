@@ -63,6 +63,7 @@ xrepo search onnxruntime
 ## usr local lib path
 ```sh
 xmake g --pkg_searchdirs=/xxx
+xmake g --pkg_searchdirs=/home/youngday/prj-yolo/xmake-onnxruntime-yolov5/3rdparty/onnxruntime-linux-x64-gpu-1.12.1
 ```
 ## end
 
