@@ -1,16 +1,16 @@
 [
 {
   "directory": "/home/youngday/prj-openmmlab/prj-yolo/xmake-onnxruntime-yolov5",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-I", "/usr/include/opencv4", "-I", "/home/youngday/.xmake/packages/o/onnxruntime/1.17.0/732193ba5e6b4d65940d3b8c7e46f81f/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/main.cpp.o", "src/yolo/main.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++20", "-Iinclude", "-I", "/usr/include/opencv4", "-I", "/home/youngday/.xmake/packages/o/onnxruntime/1.17.0/4b96d53b601449049f2da5b0b69286b8/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/main.cpp.o", "src/yolo/main.cpp"],
   "file": "src/yolo/main.cpp"
 },
 {
   "directory": "/home/youngday/prj-openmmlab/prj-yolo/xmake-onnxruntime-yolov5",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-I", "/usr/include/opencv4", "-I", "/home/youngday/.xmake/packages/o/onnxruntime/1.17.0/732193ba5e6b4d65940d3b8c7e46f81f/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/utils.cpp.o", "src/yolo/utils.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++20", "-Iinclude", "-I", "/usr/include/opencv4", "-I", "/home/youngday/.xmake/packages/o/onnxruntime/1.17.0/4b96d53b601449049f2da5b0b69286b8/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/utils.cpp.o", "src/yolo/utils.cpp"],
   "file": "src/yolo/utils.cpp"
 },
 {
   "directory": "/home/youngday/prj-openmmlab/prj-yolo/xmake-onnxruntime-yolov5",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++17", "-Iinclude", "-I", "/usr/include/opencv4", "-I", "/home/youngday/.xmake/packages/o/onnxruntime/1.17.0/732193ba5e6b4d65940d3b8c7e46f81f/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/detector.cpp.o", "src/yolo/detector.cpp"],
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c++20", "-Iinclude", "-I", "/usr/include/opencv4", "-I", "/home/youngday/.xmake/packages/o/onnxruntime/1.17.0/4b96d53b601449049f2da5b0b69286b8/include", "-o", "build/.objs/yolov5/linux/x86_64/debug/src/yolo/detector.cpp.o", "src/yolo/detector.cpp"],
   "file": "src/yolo/detector.cpp"
 }]
