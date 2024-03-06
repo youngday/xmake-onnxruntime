@@ -17,14 +17,20 @@ int main(int argc, char* argv[])
     cmd.add<std::string>("class_names", 'c', "Path to class names file.", true, "models/coco.names");
     cmd.add("gpu", '\0', "Inference on cuda device.");
 
-    //cmd.parse_check(argc, argv);
-    // bool isGPU = cmd.exist("gpu");
+    cmd.parse_check(argc, argv);
+    bool isGPU = cmd.exist("gpu");
     
-    bool isGPU =true;
+    // bool isGPU =true;
     const std::string classNamesPath = cmd.get<std::string>("class_names");
     const std::vector<std::string> classNames = utils::loadNames(classNamesPath);
     const std::string imagePath = cmd.get<std::string>("image");
     const std::string modelPath = cmd.get<std::string>("model_path");
+    // bool isGPU =false;
+    // const std::string classNamesPath = "models/coco.names";
+    // const std::vector<std::string> classNames = utils::loadNames(classNamesPath);
+    // const std::string imagePath = "images/bus.jpg";
+    // const std::string modelPath = "models/yolov5m.onnx";
+    // ./build/linux/x86_64/debug/yolov5 --model_path models/yolov5m.onnx --image images/bus.jpg --class_names models/coco.names --gpu
 
     if (classNames.empty())
     {
