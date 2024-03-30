@@ -55,7 +55,7 @@ void file_iterator(DCSP_CORE *&p) {
 
 int read_coco_yaml(DCSP_CORE *&p) {
     // Open the YAML file
-    std::ifstream file("coco.yaml");
+    std::ifstream file("models/coco.yaml");
     if (!file.is_open()) {
         std::cerr << "Failed to open file" << std::endl;
         return 1;
@@ -97,7 +97,7 @@ int read_coco_yaml(DCSP_CORE *&p) {
 
 int main() {
     DCSP_CORE *yoloDetector = new DCSP_CORE;
-    std::string model_path = "yolov8n.onnx";
+    std::string model_path = "models/yolov8m.onnx";
     read_coco_yaml(yoloDetector);
 #ifdef USE_CUDA
     // GPU FP32 inference

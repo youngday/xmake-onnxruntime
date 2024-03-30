@@ -39,7 +39,7 @@ char *BlobFromImage(cv::Mat &iImg, T &iBlob) {
 }
 
 
-char* DL_CORE::PreProcess(cv::Mat& iImg, std::vector<int> iImgSize, cv::Mat& oImg)
+char* DCSP_CORE::PreProcess(cv::Mat& iImg, std::vector<int> iImgSize, cv::Mat& oImg)
 {
 	if (iImg.channels() == 3)
 	{

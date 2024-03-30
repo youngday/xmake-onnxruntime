@@ -24,6 +24,7 @@ target("yolov5_detect")
 
 target("yolov8_detect")
     set_kind("binary")
+    add_files("src/yolov8/inference.cpp")
     add_files("src/yolov8/main_detect.cpp")
     
 
