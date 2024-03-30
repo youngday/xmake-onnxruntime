@@ -17,11 +17,13 @@ add_includedirs("src/utils")
 add_files("src/utils/*.cpp")
 add_includedirs("src/")
 
+
 target("yolov5_detect")
     set_kind("binary")
-    add_files("src/yolov5/main.cpp")
+    add_files("src/yolov5/*.cpp")
 
 target("yolov8_detect")
     set_kind("binary")
     add_files("src/yolov8/main_detect.cpp")
     
+

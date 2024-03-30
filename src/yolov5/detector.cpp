@@ -1,4 +1,4 @@
-#include "yolo/detector.h"
+#include "detector.h"
 
 YOLODetector::YOLODetector(const std::string& modelPath,
                            const bool& isGPU = true,

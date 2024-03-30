@@ -1,9 +1,9 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-#include "yolo/cmdline.h"
-#include "yolo/utils.h"
-#include "yolo/detector.h"
+#include "cmdline.h"
+#include "yolov5_utils.h"
+#include "detector.h"
 
 
 int main(int argc, char* argv[])

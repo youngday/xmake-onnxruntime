@@ -13,7 +13,6 @@
 #include <thread>
 #include<chrono>
 
-#include "atomic_queue/atomic_queue.h"
 #include "co/all.h"
 #include "mytime.hpp"
 #include "nlohmann/json.hpp"
@@ -26,23 +25,5 @@
 
 #include "log.hpp"
 inline quill::Logger *logger;
-struct YamlParam {
-  std::string userName;
-  std::string passWord;
-  std::string serialNum;
-
-  std::string pcLocalIP;
-  std::string pcRemoteIP;
-  std::string cppLocalIP;
-  std::string cppRemoteIP;
-  std::string javaLocalIP;
-  std::string javaRemoteIP;
-  std::string PLCIP;
-  std::string PLCPort;
-  std::string sendPLCPort;
-  std::string rcvPLCPort;
-};
-
-
 
 #endif // MAIN_HPP
