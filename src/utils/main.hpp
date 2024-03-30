@@ -17,6 +17,8 @@
 #include "mytime.hpp"
 #include "nlohmann/json.hpp"
 #include <yaml-cpp/yaml.h>
+#include <CLI/CLI.hpp>
+
 
 #define FMT_HEADER_ONLY//NOTE: need add 
 #include <fmt/format.h>

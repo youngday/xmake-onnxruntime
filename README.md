@@ -1,5 +1,11 @@
 # xmake onnxruntime  
 
+## models
+
+⏰:model and files in build_files, put in with exe file.
+
+you may run .sh , for fun.
+
 ## yolov5
 
 ### compile 
@@ -27,4 +33,8 @@ YOLOv5 Runtime Stack repo: https://github.com/zhiqwang/yolov5-rt-stack
 ONNXRuntime Inference examples: https://github.com/microsoft/onnxruntime-inference-examples
 
 ## yolov8
+
+### References for yolov8
+
+YOLO v8 repo: https://github.com/ultralytics/yolov8
 
