@@ -1,0 +1,8 @@
+[library]
+name = "toml++"
+authors = ["Mark Gillard <mark.gillard@outlook.com.au>"]
+
+[dependencies]
+cpp = 17
+[str_array]
+test = ["cpptoml", "toml11", "Boost.TOML"]
