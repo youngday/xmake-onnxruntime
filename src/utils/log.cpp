@@ -46,7 +46,7 @@ void quill_init() {
   logger->set_log_level(quill::LogLevel::Debug);
 
   // log everything up to this point before changing the handler log level
-  // quill::flush();
+  quill::flush();
 
   // Log to both handlers
   // LOG_TRACE_L3(logger, "This is a log trace l3 example {}", 1);

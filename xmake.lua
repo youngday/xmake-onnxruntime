@@ -7,8 +7,8 @@ add_requires("opencv", {system = true})
 add_requires("openssl", {alias = "openssl", configs = { options = "OpenSSL:shared=True" }})
 add_requires( "yaml-cpp 0.8.0",  "cppzmq 4.10.0", "toml++ 3.4.0","coost 3.0.2","quill 3.6.0","fmt 10.2.1",
 "nlohmann_json 3.11.2","cli11 2.4.1","concurrentqueue 1.0.4")
--- add_requires("onnxruntime 1.17.0",{configs = {gpu = true}})
-add_requires("onnxruntime 1.17.0")
+add_requires("onnxruntime 1.17.0",{configs = {gpu = true}})
+-- add_requires("onnxruntime 1.17.0")
 
 add_packages("yaml-cpp", "coost","toml++","nlohmann_json","fmt","quill","cli11","concurrentqueue")
 add_packages("opencv","onnxruntime")
@@ -26,5 +26,12 @@ target("yolov8_detect")
     set_kind("binary")
     add_files("src/yolov8/inference.cpp")
     add_files("src/yolov8/main_detect.cpp")
-    
 
+
+
+target("yolov8_2_detect")
+    set_kind("binary")
+    add_files("src/yolov8_2/main_detect.cpp")
+    add_files("src/yolov8_2/yolov8_onnx.cpp")
+    add_includedirs("src/yolov8_2")
+    add_files("src/yolov8_2/yolov8_utils.cpp")

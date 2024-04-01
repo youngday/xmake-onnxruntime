@@ -25,13 +25,9 @@ bool Yolov8Onnx::ReadModel(const std::string& modelPath, bool isCuda, int cudaID
 		else if (isCuda && (cuda_available != available_providers.end()))
 		{
 			std::cout << "************* Infer model on GPU! *************" << std::endl;
-#if ORT_API_VERSION < ORT_OLD_VISON
-			OrtCUDAProviderOptions cudaOption;
-			cudaOption.device_id = cudaID;
-			_OrtSessionOptions.AppendExecutionProvider_CUDA(cudaOption);
-#else
+
 			OrtStatus* status = OrtSessionOptionsAppendExecutionProvider_CUDA(_OrtSessionOptions, cudaID);
-#endif
+
 		}
 		else
 		{

@@ -22,6 +22,15 @@
              "--image", "${workspaceFolder}/build/linux/x86_64/debug/images", "--class_names","${workspaceFolder}/build/linux/x86_64/debug/models/coco.yaml","--gpu","false"],
             "cwd": "${workspaceFolder}/build/linux/x86_64/debug/"
           },
+          {
+            "type": "lldb",
+            "request": "launch",
+            "name": "yolov8_2_detect",
+            "program": "${workspaceFolder}/build/linux/x86_64/debug/yolov8_2_detect",
+            "args": ["--model_path","${workspaceFolder}/build/linux/x86_64/debug/models/yolov8m.onnx",
+             "--image", "${workspaceFolder}/build/linux/x86_64/debug/images", "--class_names","${workspaceFolder}/build/linux/x86_64/debug/models/coco.yaml","--gpu","false"],
+            "cwd": "${workspaceFolder}/build/linux/x86_64/debug/"
+          },
     ]
 }
 

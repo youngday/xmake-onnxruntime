@@ -100,6 +100,7 @@
         "format": "cpp",
         "locale": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "*.ipp": "cpp"
     }
 }
