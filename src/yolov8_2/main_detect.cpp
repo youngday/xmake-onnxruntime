@@ -114,8 +114,8 @@ int main() {
 
 const auto start = steady_clock::now();
 sleep_for(10ms);
-const auto end =  steady_clock::now();
-int diff=(end - start)/1ms; 
+int diff=(steady_clock::now() - start)/1ms; 
+
 
   LOG_INFO(logger,"diff:{0} ms",diff);
   quill::flush();

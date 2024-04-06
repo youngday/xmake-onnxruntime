@@ -38,3 +38,14 @@ ONNXRuntime Inference examples: https://github.com/microsoft/onnxruntime-inferen
 
 YOLO v8 repo: https://github.com/ultralytics/yolov8
 
+## yolov8_v2 
+
+### References for yolov8
+ 
+ fork from:
+
+  https://github.com/UNeedCryDear/yolov8-opencv-onnxruntime-cpp
+
+
+
+  
