@@ -35,3 +35,8 @@ target("yolov8_2_detect")
     add_files("src/yolov8_2/yolov8_onnx.cpp")
     add_includedirs("src/yolov8_2")
     add_files("src/yolov8_2/yolov8_utils.cpp")
+
+target("yolov8_3_pose")
+    set_kind("binary")
+    add_includedirs("src/yolov8_3_pose/include")
+    add_files("src/yolov8_3_pose/src/**")
