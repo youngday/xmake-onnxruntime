@@ -7,11 +7,14 @@ add_requires("opencv", {system = true})
 add_requires("openssl", {alias = "openssl", configs = { options = "OpenSSL:shared=True" }})
 add_requires( "yaml-cpp 0.8.0",  "cppzmq 4.10.0", "toml++ 3.4.0","coost 3.0.2","quill 3.6.0","fmt 10.2.1",
 "nlohmann_json 3.11.2","cli11 2.4.1","concurrentqueue 1.0.4")
-add_requires("onnxruntime 1.17.0",{configs = {gpu = true}})
 -- add_requires("onnxruntime 1.17.0")
 
 add_packages("yaml-cpp", "coost","toml++","nlohmann_json","fmt","quill","cli11","concurrentqueue")
-add_packages("opencv","onnxruntime")
+add_packages("opencv")
+
+add_includedirs("~/prj-ai/onnxruntime-linux-x64-gpu-1.17.1/include")
+add_links("onnxruntime") --libonnxruntime and need export to bashrc
+add_linkdirs("~/prj-ai/onnxruntime-linux-x64-gpu-1.17.1/lib")
 
 add_includedirs("src/utils")
 add_files("src/utils/*.cpp")

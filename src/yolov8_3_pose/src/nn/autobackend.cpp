@@ -1,4 +1,4 @@
-#pragma once
+// #pragma once
 
 #include "nn/autobackend.h"
 
@@ -97,10 +97,8 @@ AutoBackendOnnx::AutoBackendOnnx(const char* modelPath, const char* logid, const
 
     if (!imgsz_.empty())
     {
-        // Initialize cvSize_ using getHeight() and getWidth()
-        //cvSize_ = cv::MatSize()
         cvSize_ = cv::Size(getWidth(), getHeight());
-        //cvMatSize_ = cv::MatSize(cvSize_.width, cvSize_.height);
+
     }
 
     // task init:
@@ -117,9 +115,6 @@ AutoBackendOnnx::AutoBackendOnnx(const char* modelPath, const char* logid, const
     else {
         std::cerr << "Warning: Cannot get task value from metadata" << std::endl;
     }
-
-    // TODO: raise assert if imgsz_ and task_ were not initialized (since you don't know in that case which postprocessing to use)
-
 }
 
 

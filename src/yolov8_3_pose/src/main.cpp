@@ -10,9 +10,7 @@
 #include "constants.h"
 #include "utils/common.h"
 
-
-namespace fs = std::filesystem;
-
+#include <main.hpp>
 
 // Define the skeleton and color mappings
 std::vector<std::vector<int>> skeleton = {{16, 14}, {14, 12}, {17, 15}, {15, 13}, {12, 13}, {6, 12}, {7, 13}, {6, 7},
@@ -316,6 +314,7 @@ void plot_results(cv::Mat img, std::vector<YoloResults>& results,
 
 int main()
 {
+    quill_init();
     // std::string img_path = "../images/000000000382.jpg";
      std::string img_path = "./images/bus.jpg";
     //const std::img_path& modelPath = "./checkpoints/yolov8n.onnx"; // detection
@@ -324,8 +323,8 @@ int main()
     // clion:
     const std::string& modelPath = "./models/yolov8m-pose.onnx"; // pose
 
-    fs::path imageFilePath(img_path);
-    fs::path newFilePath = imageFilePath.stem();
+    std::filesystem::path imageFilePath(img_path);
+    std::filesystem::path newFilePath = imageFilePath.stem();
     // newFilePath += "-kpt-cpp";
     newFilePath += imageFilePath.extension();
     assert(newFilePath != imageFilePath);
@@ -347,14 +346,10 @@ int main()
     std::vector<cv::Scalar> colors = generateRandomColors(model.getNc(), model.getCh());
     std::unordered_map<int, std::string> names = model.getNames();
 
-    std::vector<std::vector<float>> keypointsVector;
-    for (const YoloResults& result : objs) {
-        keypointsVector.push_back(result.keypoints);
-    }
-
     cv::cvtColor(img, img, cv::COLOR_RGB2BGR);
     cv::Size show_shape = img.size();  // cv::Size(1280, 720); // img.size()
-         plot_results(img, objs, colors, names, show_shape);
+    LOG_INFO(logger,"image size w*h:{0},{1}",img.size().width,img.size().height);
+    plot_results(img, objs, colors, names, show_shape);
 //    plot_masks(img, objs, colors, names);
     cv::imshow("img", img);
     cv::waitKey();
