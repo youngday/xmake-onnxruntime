@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <array>
 #include <iostream>
+#include"main.hpp"
 
 /**
  * @brief Base class for any onnx model regarding the target.
@@ -57,7 +58,7 @@ OnnxModelBase::OnnxModelBase(const char* modelPath, const char* logid, const cha
         throw std::runtime_error("NotImplemented provider=" + std::string(provider));
     }
 
-    std::cout << "Inference device: " << std::string(provider) << std::endl;
+   LOG_INFO(logger,"Inference device: {0}" ,std::string(provider));
 
 #ifdef _WIN32
     std::wstring w_modelPath = utils::charToWstring(modelPath.c_str());

@@ -1,5 +1,5 @@
 #include <opencv2/opencv.hpp>
-#include "yolov8_onnx.h"
+#include "yolov8_pose_onnx.h"
 
 #include <main.hpp>
 
@@ -14,7 +14,7 @@ using std::chrono::steady_clock;
 using namespace std::literals;
 
 template <typename _Tp>
-int yolov8_onnx(_Tp &task, Mat &img, string &model_path) {
+int yolov8_pose_onnx(_Tp &task, Mat &img, string &model_path) {
 
   if (task.ReadModel(model_path, false)) {
     cout << "read net ok!" << endl;
@@ -33,7 +33,9 @@ int yolov8_onnx(_Tp &task, Mat &img, string &model_path) {
   vector<OutputParams> result;
   if (task.OnnxDetect(img, result)) {
     cout << "Detect sucessed!" << endl;
-    DrawPred(img, result, task._className, color);
+    // DrawPred(img, result, task._className, color);
+     PoseParams poseParams;
+      DrawPredPose(img, result, poseParams);
     cout << "Detect DrawPred!" << endl;
   } else {
     cout << "Detect Failed!" << endl;
@@ -89,10 +91,14 @@ template <typename _Tp> int video_demo(_Tp &task, string &model_path) {
 
     if (task.Detect(frame, net, result)) {
       DrawPred(frame, result, task._className, color, true);
+      PoseParams poseParams;
+      DrawPredPose(img, result, poseParams);
     }
 #else
     if (task.OnnxDetect(frame, result)) {
-      DrawPred(frame, result, task._className, color, true);
+      // DrawPred(frame, result, task._className, color, true);
+      PoseParams poseParams;
+      DrawPredPose(frame, result, poseParams);
     }
 #endif
     int k = waitKey(10);
@@ -120,25 +126,25 @@ int diff=(steady_clock::now() - start)/1ms;
   LOG_INFO(logger,"diff:{0} ms",diff);
   quill::flush();
 
-  Yolov8Onnx task_detect_ort;
+  Yolov8PoseOnnx task_pose_ort;
 
   std::filesystem::path current_path = std::filesystem::current_path();
 
   string img_path = current_path / "images/bus.jpg";
 
-  string model_path_detect = current_path / "models/yolov8m.onnx";
+  string model_path_pose = current_path / "models/yolov8m-pose.onnx";
 
   Mat src = imread(img_path.c_str());
   Mat img = src.clone();
 
-  yolov8_onnx(task_detect_ort, img, model_path_detect);
+  yolov8_pose_onnx(task_pose_ort, img, model_path_pose);
 
 
 #ifdef VIDEO_OPENCV
   video_demo(task_detect_ocv, model_path_detect);
   // video_demo(task_segment_ocv, model_path_seg);
 #else
-  // video_demo(task_detect_ort, model_path_detect);
+  // video_demo(task_pose_ort, model_path_detect);
   // video_demo(task_rtdetr_ort, model_path_rtdetr);
   // video_demo(task_segment_ort, model_path_seg);
 #endif

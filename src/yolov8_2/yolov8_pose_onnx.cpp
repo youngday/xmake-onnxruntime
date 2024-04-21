@@ -217,10 +217,10 @@ bool Yolov8PoseOnnx::OnnxBatchDetect(std::vector<cv::Mat>& srcImgs, std::vector<
 		all_data += one_output_length;
 		float* pdata = (float*)output0.data;
 		int rows = output0.rows;
-		std::vector<int> class_ids;//½á¹ûidÊý×é
-		std::vector<float> confidences;//½á¹ûÃ¿¸öid¶ÔÓ¦ÖÃÐÅ¶ÈÊý×é
-		std::vector<cv::Rect> boxes;//Ã¿¸öid¾ØÐÎ¿ò
-		std::vector<std::vector<PoseKeyPoint>> pose_key_points; //±£´ækpt
+		std::vector<int> class_ids;//ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½
+		std::vector<float> confidences;//ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½idï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½ï¿½ï¿½
+		std::vector<cv::Rect> boxes;//Ã¿ï¿½ï¿½idï¿½ï¿½ï¿½Î¿ï¿½
+		std::vector<std::vector<PoseKeyPoint>> pose_key_points; //ï¿½ï¿½ï¿½ï¿½kpt
 
 		for (int r = 0; r < rows; ++r) {    
 			float max_class_socre= pdata[4];
@@ -245,7 +245,7 @@ bool Yolov8PoseOnnx::OnnxBatchDetect(std::vector<cv::Mat>& srcImgs, std::vector<
 				}
 				pose_key_points.push_back(temp_kpts);
 			}
-			pdata += net_width;//ÏÂÒ»ÐÐ
+			pdata += net_width;//ï¿½ï¿½Ò»ï¿½ï¿½
 		}
 
 		std::vector<int> nms_result;

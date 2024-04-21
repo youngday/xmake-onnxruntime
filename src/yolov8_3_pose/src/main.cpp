@@ -328,7 +328,7 @@ int main()
     // newFilePath += "-kpt-cpp";
     newFilePath += imageFilePath.extension();
     assert(newFilePath != imageFilePath);
-    std::cout << "newFilePath: " << newFilePath << std::endl;
+    LOG_INFO(logger,"newFilePath:{0}",newFilePath );
 
     const std::string& onnx_provider = OnnxProviders::CPU; // "cpu";
     const std::string& onnx_logid = "yolov8_inference2";
@@ -348,6 +348,7 @@ int main()
 
     cv::cvtColor(img, img, cv::COLOR_RGB2BGR);
     cv::Size show_shape = img.size();  // cv::Size(1280, 720); // img.size()
+    
     LOG_INFO(logger,"image size w*h:{0},{1}",img.size().width,img.size().height);
     plot_results(img, objs, colors, names, show_shape);
 //    plot_masks(img, objs, colors, names);
