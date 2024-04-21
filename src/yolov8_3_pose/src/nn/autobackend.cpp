@@ -15,7 +15,7 @@
 #include "utils/augment.h"
 #include "utils/common.h"
 #include "utils/ops.h"
-#include"main.hpp"
+#include "main.hpp"
 
 AutoBackendOnnx::AutoBackendOnnx(
     const char *modelPath, const char *logid, const char *provider,
@@ -26,7 +26,8 @@ AutoBackendOnnx::AutoBackendOnnx(
 
 AutoBackendOnnx::AutoBackendOnnx(const char *modelPath, const char *logid,
                                  const char *provider)
-    : OnnxModelBase(modelPath, logid, provider) {
+    : OnnxModelBase(modelPath, logid, provider)
+{
   // init metadata etc
   OnnxModelBase(modelPath, logid, provider);
   // then try to get additional info from metadata like imgsz, stride etc;
@@ -37,76 +38,98 @@ AutoBackendOnnx::AutoBackendOnnx(const char *modelPath, const char *logid,
 
   // post init imgsz
   auto imgsz_iterator = base_metadata.find(MetadataConstants::IMGSZ);
-  if (imgsz_iterator != base_metadata.end()) {
+  if (imgsz_iterator != base_metadata.end())
+  {
     // parse it and convert to int iterable
     std::vector<int> imgsz =
         convertStringVectorToInts(parseVectorString(imgsz_iterator->second));
     // set it here:
-    if (imgsz_.empty()) {
+    if (imgsz_.empty())
+    {
       imgsz_ = imgsz;
     }
-  } else {
+  }
+  else
+  {
     std::cerr << "Warning: Cannot get imgsz value from metadata" << std::endl;
   }
 
   // post init stride
   auto stride_item = base_metadata.find(MetadataConstants::STRIDE);
-  if (stride_item != base_metadata.end()) {
+  if (stride_item != base_metadata.end())
+  {
     // parse it and convert to int iterable
     int stide_int = std::stoi(stride_item->second);
     // set it here:
-    if (stride_ == OnnxInitializers::UNINITIALIZED_STRIDE) {
+    if (stride_ == OnnxInitializers::UNINITIALIZED_STRIDE)
+    {
       stride_ = stide_int;
     }
-  } else {
+  }
+  else
+  {
     std::cerr << "Warning: Cannot get stride value from metadata" << std::endl;
   }
 
   // post init names
   auto names_item = base_metadata.find(MetadataConstants::NAMES);
-  if (names_item != base_metadata.end()) {
+  if (names_item != base_metadata.end())
+  {
     // parse it and convert to int iterable
     std::unordered_map<int, std::string> names = parseNames(names_item->second);
     LOG_INFO(logger, "***Names from metadata***");
-    for (const auto &pair : names) {
+    for (const auto &pair : names)
+    {
       LOG_INFO(logger, "Key:{0}, Value:{1} ", pair.first, pair.second);
     }
     // set it here:
-    if (names_.empty()) {
+    if (names_.empty())
+    {
       names_ = names;
     }
-  } else {
+  }
+  else
+  {
     std::cerr << "Warning: Cannot get names value from metadata" << std::endl;
   }
 
   // post init number of classes - you can do that only and only if names_ is
   // not empty and nc was not initialized previously
-  if (nc_ == OnnxInitializers::UNINITIALIZED_NC && !names_.empty()) {
+  if (nc_ == OnnxInitializers::UNINITIALIZED_NC && !names_.empty())
+  {
     nc_ = names_.size();
-  } else {
+  }
+  else
+  {
     std::cerr << "Warning: Cannot get nc value from metadata (probably names "
                  "wasn't set)"
               << std::endl;
   }
 
-  if (!imgsz_.empty() && inputTensorShape_.empty()) {
+  if (!imgsz_.empty() && inputTensorShape_.empty())
+  {
     inputTensorShape_ = {1, ch_, getHeight(), getWidth()};
   }
 
-  if (!imgsz_.empty()) {
+  if (!imgsz_.empty())
+  {
     cvSize_ = cv::Size(getWidth(), getHeight());
   }
 
   // task init:
   auto task_item = base_metadata.find(MetadataConstants::TASK);
-  if (task_item != base_metadata.end()) {
+  if (task_item != base_metadata.end())
+  {
     // parse it and convert to int iterable
     std::string task = std::string(task_item->second);
     // set it here:
-    if (task_.empty()) {
+    if (task_.empty())
+    {
       task_ = task;
     }
-  } else {
+  }
+  else
+  {
     std::cerr << "Warning: Cannot get task value from metadata" << std::endl;
   }
 }
@@ -123,13 +146,15 @@ const int &AutoBackendOnnx::getCh() { return ch_; }
 
 const int &AutoBackendOnnx::getNc() { return nc_; }
 
-const std::unordered_map<int, std::string> &AutoBackendOnnx::getNames() {
+const std::unordered_map<int, std::string> &AutoBackendOnnx::getNames()
+{
   return names_;
 }
 
 const cv::Size &AutoBackendOnnx::getCvSize() { return cvSize_; }
 
-const std::vector<int64_t> &AutoBackendOnnx::getInputTensorShape() {
+const std::vector<int64_t> &AutoBackendOnnx::getInputTensorShape()
+{
   return inputTensorShape_;
 }
 
@@ -138,7 +163,8 @@ const std::string &AutoBackendOnnx::getTask() { return task_; }
 std::vector<YoloResults>
 AutoBackendOnnx::predict_once(const std::string &imagePath, float &conf,
                               float &iou, float &mask_threshold,
-                              int conversionCode, bool verbose) {
+                              int conversionCode, bool verbose)
+{
   // Convert the string imagePath to an object of type std::filesystem::path
   std::filesystem::path imageFilePath(imagePath);
   // Call the predict_once method, converting the image to a cv::Mat
@@ -148,9 +174,11 @@ AutoBackendOnnx::predict_once(const std::string &imagePath, float &conf,
 std::vector<YoloResults>
 AutoBackendOnnx::predict_once(const std::filesystem::path &imagePath, float &conf,
                               float &iou, float &mask_threshold,
-                              int conversionCode, bool verbose) {
+                              int conversionCode, bool verbose)
+{
   // Check if the specified path exists
-  if (!std::filesystem::exists(imagePath)) {
+  if (!std::filesystem::exists(imagePath))
+  {
     std::cerr << "Error: File does not exist: " << imagePath << std::endl;
     // Return an empty vector or throw an exception, depending on your logic
     return {};
@@ -160,7 +188,8 @@ AutoBackendOnnx::predict_once(const std::filesystem::path &imagePath, float &con
   cv::Mat image = cv::imread(imagePath.string(), cv::IMREAD_UNCHANGED);
 
   // Check if loading the image was successful
-  if (image.empty()) {
+  if (image.empty())
+  {
     std::cerr << "Error: Failed to load image: " << imagePath << std::endl;
     // Return an empty vector or throw an exception, depending on your logic
     return {};
@@ -171,7 +200,8 @@ AutoBackendOnnx::predict_once(const std::filesystem::path &imagePath, float &con
   /*assert(required_image_channels == image.channels() && "");*/
   // Assert that the number of channels in the input image matches the required
   // number of channels for the model
-  if (required_image_channels != image.channels()) {
+  if (required_image_channels != image.channels())
+  {
     const std::string &errorMessage = "Error: Number of image channels does "
                                       "not match the required channels.\n"
                                       "Number of channels in the image: " +
@@ -187,7 +217,8 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
                                                        float &conf, float &iou,
                                                        float &mask_threshold,
                                                        int conversionCode,
-                                                       bool verbose) {
+                                                       bool verbose)
+{
   double preprocess_time = 0.0;
   double inference_time = 0.0;
   double postprocess_time = 0.0;
@@ -196,7 +227,8 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
   float *blob = nullptr;
   // double* blob = nullptr;
   std::vector<Ort::Value> inputTensors;
-  if (conversionCode >= 0) {
+  if (conversionCode >= 0)
+  {
     cv::cvtColor(image, image, conversionCode);
   }
   std::vector<int64_t> inputTensorShape;
@@ -228,7 +260,8 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
   // 3. postprocess based on task:
   std::unordered_map<int, std::string> names = this->getNames();
   int class_names_num = names.size();
-  if (task_ == YoloTasks::SEGMENT) {
+  if (task_ == YoloTasks::SEGMENT)
+  {
 
     // get outputs info
     std::vector<int64_t> outputTensor0Shape =
@@ -258,7 +291,9 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
     postprocess_masks(output0, output1, img_info, results, class_names_num,
                       conf, iou, iw, ih, mw, mh, mask_features_num,
                       mask_threshold);
-  } else if (task_ == YoloTasks::DETECT) {
+  }
+  else if (task_ == YoloTasks::DETECT)
+  {
     ImageInfo img_info = {image.size()};
     std::vector<int64_t> outputTensor0Shape =
         outputTensors[0].GetTensorTypeAndShapeInfo().GetShape();
@@ -269,7 +304,9 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
             CV_32F, all_data0)
             .t(); // [bs, features, preds_num]=>[bs, preds_num, features]
     postprocess_detects(output0, img_info, results, class_names_num, conf, iou);
-  } else if (task_ == YoloTasks::POSE) {
+  }
+  else if (task_ == YoloTasks::POSE)
+  {
     ImageInfo image_info = {image.size()};
     std::vector<int64_t> outputTensor0Shape =
         outputTensors[0].GetTensorTypeAndShapeInfo().GetShape();
@@ -280,7 +317,9 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
             CV_32F, all_data0)
             .t(); // [bs, features, preds_num]=>[bs, preds_num, features]
     postprocess_kpts(output0, image_info, results, class_names_num, conf, iou);
-  } else {
+  }
+  else
+  {
     throw std::runtime_error("NotImplementedError: task: " + task_);
   }
 
@@ -290,7 +329,7 @@ std::vector<YoloResults> AutoBackendOnnx::predict_once(cv::Mat &image,
   LOG_INFO(logger, " objs:{0}", results.size());
   auto run_time =
       (preprocess_time + inference_time + postprocess_time) * 1000.0;
-  LOG_INFO(logger, " run time pre+infer+pose:{0}+{1}+{2}={3} ms",
+  LOG_INFO(logger, " run time pre+infer+pose:{0:.3f}+{1:.3f}+{2:.3f}={3:.3f} ms",
            preprocess_time * 1000, inference_time * 1000,
            postprocess_time * 1000, run_time);
   LOG_INFO(logger, "shape (1, {0},{1},{2})", image.channels(),
@@ -303,7 +342,8 @@ void AutoBackendOnnx::postprocess_masks(
     cv::Mat &output0, cv::Mat &output1, ImageInfo image_info,
     std::vector<YoloResults> &output, int &class_names_num,
     float &conf_threshold, float &iou_threshold, int &iw, int &ih, int &mw,
-    int &mh, int &masks_features_num, float mask_threshold /* = 0.5f */) {
+    int &mh, int &masks_features_num, float mask_threshold /* = 0.5f */)
+{
   output.clear();
   std::vector<int> class_ids;
   std::vector<float> confidences;
@@ -312,13 +352,15 @@ void AutoBackendOnnx::postprocess_masks(
   // 4 - your default number of rect parameters {x, y, w, h}
   int data_width = class_names_num + 4 + masks_features_num;
   int rows = output0.rows;
-  float *pdata =reinterpret_cast<float *> (output0.data);
-  for (int r = 0; r < rows; ++r) {
+  float *pdata = reinterpret_cast<float *>(output0.data);
+  for (int r = 0; r < rows; ++r)
+  {
     cv::Mat scores(1, class_names_num, CV_32FC1, pdata + 4);
     cv::Point class_id;
     double max_conf;
     minMaxLoc(scores, 0, &max_conf, 0, &class_id);
-    if (max_conf > conf_threshold) {
+    if (max_conf > conf_threshold)
+    {
       masks.push_back(
           std::vector<float>(pdata + 4 + class_names_num, pdata + data_width));
       class_ids.push_back(class_id.x);
@@ -355,7 +397,8 @@ void AutoBackendOnnx::postprocess_masks(
       temp_mask.reshape(0, {masks_features_num,
                             downsampled_size.width * downsampled_size.height});
 
-  for (int i = 0; i < nms_result.size(); ++i) {
+  for (int i = 0; i < nms_result.size(); ++i)
+  {
     int idx = nms_result[i];
     boxes[idx] = boxes[idx] & cv::Rect(0, 0, image_info.raw_size.width,
                                        image_info.raw_size.height);
@@ -368,7 +411,8 @@ void AutoBackendOnnx::postprocess_masks(
 
 void AutoBackendOnnx::postprocess_detects(
     cv::Mat &output0, ImageInfo image_info, std::vector<YoloResults> &output,
-    int &class_names_num, float &conf_threshold, float &iou_threshold) {
+    int &class_names_num, float &conf_threshold, float &iou_threshold)
+{
   output.clear();
   std::vector<int> class_ids;
   std::vector<float> confidences;
@@ -379,13 +423,15 @@ void AutoBackendOnnx::postprocess_detects(
   int rows = output0.rows;
   float *pdata = (float *)output0.data;
 
-  for (int r = 0; r < rows; ++r) {
+  for (int r = 0; r < rows; ++r)
+  {
     cv::Mat scores(1, class_names_num, CV_32FC1, pdata + 4);
     cv::Point class_id;
     double max_conf;
     minMaxLoc(scores, nullptr, &max_conf, nullptr, &class_id);
 
-    if (max_conf > conf_threshold) {
+    if (max_conf > conf_threshold)
+    {
       masks.emplace_back(pdata + 4 + class_names_num, pdata + data_width);
       class_ids.push_back(class_id.x);
       confidences.push_back((float)max_conf);
@@ -408,7 +454,8 @@ void AutoBackendOnnx::postprocess_detects(
   std::vector<int> nms_result;
   cv::dnn::NMSBoxes(boxes, confidences, conf_threshold, iou_threshold,
                     nms_result); // , nms_eta, top_k);
-  for (int idx : nms_result) {
+  for (int idx : nms_result)
+  {
     boxes[idx] = boxes[idx] & cv::Rect(0, 0, image_info.raw_size.width,
                                        image_info.raw_size.height);
     YoloResults result = {class_ids[idx], confidences[idx], boxes[idx]};
@@ -420,7 +467,8 @@ void AutoBackendOnnx::postprocess_kpts(cv::Mat &output0, ImageInfo &image_info,
                                        std::vector<YoloResults> &output,
                                        int &class_names_num,
                                        float &conf_threshold,
-                                       float &iou_threshold) {
+                                       float &iou_threshold)
+{
   std::vector<cv::Rect> boxes;
   std::vector<float> confidences;
   std::vector<int> class_ids;
@@ -430,7 +478,8 @@ void AutoBackendOnnx::postprocess_kpts(cv::Mat &output0, ImageInfo &image_info,
   cv::Size img1_shape = getCvSize();
   auto bound_bbox = cv::Rect_<float>(0, 0, image_info.raw_size.width,
                                      image_info.raw_size.height);
-  for (int i = 0; i < boxes.size(); i++) {
+  for (int i = 0; i < boxes.size(); i++)
+  {
     //             pred[:, :4] = ops.scale_boxes(img.shape[2:], pred[:, :4],
     //             shape).round()
     //            pred_kpts = pred[:, 6:].view(len(pred), *self.model.kpt_shape)
@@ -498,10 +547,12 @@ void AutoBackendOnnx::_get_mask2(const cv::Mat &masks_features,
 }
 
 void AutoBackendOnnx::fill_blob(cv::Mat &image, float *&blob,
-                                std::vector<int64_t> &inputTensorShape) {
+                                std::vector<int64_t> &inputTensorShape)
+{
 
   cv::Mat floatImage;
-  if (inputTensorShape.empty()) {
+  if (inputTensorShape.empty())
+  {
     inputTensorShape = getInputTensorShape();
   }
   int inputChannelsNum = inputTensorShape[1];
@@ -512,7 +563,8 @@ void AutoBackendOnnx::fill_blob(cv::Mat &image, float *&blob,
 
   // hwc -> chw
   std::vector<cv::Mat> chw(floatImage.channels());
-  for (int i = 0; i < floatImage.channels(); ++i) {
+  for (int i = 0; i < floatImage.channels(); ++i)
+  {
     chw[i] = cv::Mat(floatImageSize, CV_32FC1,
                      blob + i * floatImageSize.width * floatImageSize.height);
   }
