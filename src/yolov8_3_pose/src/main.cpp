@@ -330,7 +330,7 @@ int main()
            img.size().height);
   plot_results(img, objs, colors, names, show_shape);
     //  plot_masks(img, objs, colors, names);
-  // cv::imshow("img", img);
-  // cv::waitKey();
+  cv::imshow("img", img);
+  cv::waitKey();
   return -1;
 }
