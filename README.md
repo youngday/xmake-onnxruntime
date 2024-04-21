@@ -21,7 +21,7 @@ YOLO v8 repo: https://github.com/ultralytics/yolov8
 
 ### References for yolov8
  
- fork from:
+ forked from:
 
   https://github.com/UNeedCryDear/yolov8-opencv-onnxruntime-cpp
 
@@ -32,5 +32,8 @@ forked from :
 
 https://github.com/FourierMourier/yolov8-onnx-cpp
   
+and issued:
 
+* keypoint resized to pre image
+* linux filepath string          
  😄 
