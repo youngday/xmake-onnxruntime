@@ -21,16 +21,10 @@ add_files("src/utils/*.cpp")
 add_includedirs("src/")
 
 
-target("yolov5_detect")
-    set_kind("binary")
-    add_files("src/yolov5/*.cpp")
-
 target("yolov8_detect")
     set_kind("binary")
     add_files("src/yolov8/inference.cpp")
     add_files("src/yolov8/main_detect.cpp")
-
-
 
 target("yolov8_2_detect")
     set_kind("binary")
@@ -38,7 +32,13 @@ target("yolov8_2_detect")
     add_files("src/yolov8_2/yolov8_onnx.cpp")
     add_includedirs("src/yolov8_2")
     add_files("src/yolov8_2/yolov8_utils.cpp")
-
+target("yolov8_2_pose")
+    set_kind("binary")
+    add_files("src/yolov8_2/main_pose.cpp")
+    add_files("src/yolov8_2/yolov8_pose_onnx.cpp")
+    add_includedirs("src/yolov8_2")
+    add_files("src/yolov8_2/yolov8_utils.cpp")
+    
 target("yolov8_3_pose")
     set_kind("binary")
     add_includedirs("src/yolov8_3_pose/include")
