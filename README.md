@@ -25,15 +25,3 @@ YOLO v8 repo: https://github.com/ultralytics/yolov8
 
   https://github.com/UNeedCryDear/yolov8-opencv-onnxruntime-cpp
 
-
-## yolov8_3_pose 
-
-forked from :
-
-https://github.com/FourierMourier/yolov8-onnx-cpp
-  
-and issued:
-
-* keypoint resized to pre image
-* linux filepath string          
- 😄 
