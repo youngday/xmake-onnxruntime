@@ -15,7 +15,7 @@ or export to ~/.bashrc
 
 ### References for yolov8
 
-YOLO v8 repo: https://github.com/ultralytics/yolov8
+YOLO v8 repo: https://github.com/ultralytics/ultralytics
 
 ## yolov8_2 
 
