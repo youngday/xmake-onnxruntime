@@ -7,9 +7,9 @@
 you may run .sh , for fun.
 
 ## onnxruntime lib.so
-⏰:put "libonnxruntime.so" and "libonnxruntime.so.1.17.0" with exe file.
+⏰:put "libonnxruntime.so" and "libonnxruntime.so.1.20.1" with exe file.
 or export to ~/.bashrc
-
+⚠️: please install CUDA-12.0 ,if use CUDA 
 
 ## yolov8
 

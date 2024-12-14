@@ -1,5 +1,8 @@
 # CHANGELOG
-
+## 2024.12.14
+- onnxruntime
+version: 1.20.1 
+cuda: 12.0 
 ## 2024.04.21
 
 * yolov5 deleted

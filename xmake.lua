@@ -16,9 +16,9 @@ add_packages("opencv")
 -- add_packages("onnxruntime")
 
 -- onnxruntime local lib  ⏰ need export libonnxruntime to bashrc
-add_includedirs("~/prj-ai/onnxruntime-linux-x64-gpu-1.17.1/include")
+add_includedirs("~/prj-ai/onnxruntime-linux-x64-gpu-1.20.1/include")
 add_links("onnxruntime") --libonnxruntime and need export to bashrc
-add_linkdirs("~/prj-ai/onnxruntime-linux-x64-gpu-1.17.1/lib")
+add_linkdirs("~/prj-ai/onnxruntime-linux-x64-gpu-1.20.1/lib")
 
 add_includedirs("src/utils")
 add_files("src/utils/*.cpp")
