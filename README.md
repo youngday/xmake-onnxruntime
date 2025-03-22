@@ -24,4 +24,5 @@ YOLO v8 repo: https://github.com/ultralytics/ultralytics
  forked from:
 
   https://github.com/UNeedCryDear/yolov8-opencv-onnxruntime-cpp
-
+## yolov11_2
+same as yolov8_2,just changinto yolov11 model.
